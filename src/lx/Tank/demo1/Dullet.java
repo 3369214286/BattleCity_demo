@@ -71,7 +71,6 @@ public class Dullet implements Runnable {
                 this.isLive = false;
                 break;
             }
-            System.out.println(x + " " + y);
         }
     }
 }

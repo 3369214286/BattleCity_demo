@@ -45,6 +45,10 @@ public class Recorder {
         }
     }
 
+    public static String getStr() {
+        return str;
+    }
+
     public static int getJishu() {
         return Recorder.jishu;
     }

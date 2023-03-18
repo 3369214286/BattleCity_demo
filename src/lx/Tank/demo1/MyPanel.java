@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
 
@@ -13,11 +14,17 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
     private Vector<Node> nodeVector = null;
 
     public MyPanel(int key) throws IOException {
+        File file=new File(Recorder.getStr());
+        if(file.exists()){
+            nodeVector = Recorder.getNodes();
+        }else{
+            key=1;
+        }
         Recorder.setVector(vector);
+        hero = new Hero(500, 500, 0, 0);
         switch (key) {
             case 0:
                 nodeVector = Recorder.getNodes();
-                hero = new Hero(500, 500, 0, 0);
                 for (int i = 0; i < nodeVector.size(); i++) {
                     EnemyTank enemyTank = new EnemyTank(nodeVector.get(i).getX(), nodeVector.get(i).getY(),
                             nodeVector.get(i).getFangxiang(), 1);
@@ -27,7 +34,6 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
                 }
                 break;
             case 1:
-                hero = new Hero(500, 500, 0, 0);
                 for (int i = 0; i < 3; i++) {
                     EnemyTank enemyTank = new EnemyTank(100 * (i + 1), 0, 1, 1);
                     vector.add(enemyTank);
